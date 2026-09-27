@@ -61,7 +61,7 @@
 
 - `dpi-ch`: https://github.com/hyperion-cs/dpi-checkers; DPI Detector: https://github.com/Runnin4ik/dpi-detector; веб-чекер 16-20: `https://hyperion-cs.github.io/dpi-checkers/ru/tcp-16-20/?host=<IP>`.
 - «Белые» SNI для 16-20: https://cheburcheck.ru/whitelist/domains.csv, [SNI Tool](https://github.com/Erifirin/sni-tool), [RealiTLScanner](https://github.com/XTLS/RealiTLScanner) (домены в своей подсети).
-- Мобильные белые списки: https://github.com/hxehex/russia-mobile-internet-whitelist (`cidrwhitelist.txt` — подсети, `ipwhitelist.txt` — отдельные IP; список общий для всех операторов и отстаёт). Проверка IP: `python3 scripts/check_whitelist_ip.py <IP>`.
+- Мобильные белые списки: https://github.com/hxehex/russia-mobile-internet-whitelist (`cidrwhitelist.txt` — подсети, `ipwhitelist.txt` — отдельные IP; список общий для всех операторов и отстаёт). Проверка IP: `python3 scripts/check_whitelist_ip.py <IP>`; доля «белых» адресов у хостеров: `python3 scripts/whitelist_by_asn.py [ASN…]` (RIPEstat).
 - Самопроверка «что видят сканеры»: https://platform.censys.io, [ByeByeVPN](https://github.com/pwnnex/ByeByeVPN), `nmap -p- -sS -sV --version-all -sC --script "ssl-cert,http-open-proxy,socks-open-proxy" -T4 -Pn <IP>`. Детект VPN «как у РКН»: [RKNHardering](https://github.com/xtclovver/RKNHardering).
 - Доступность IP из РФ: check-host.net, globalping.io.
 - `xray tls ping <домен>` — проверка кандидата в target.
