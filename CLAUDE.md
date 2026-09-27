@@ -57,4 +57,10 @@
 - Белые списки (домены, IP, CIDR): https://github.com/hxehex/russia-mobile-internet-whitelist
 - Проверка IP и доменов на блокировки РКН и CDN-подсети: cheburcheck.ru (есть API).
 - `xray tls ping <домен>`: проверка кандидата в SNI/target (TLS 1.3, H2, X25519MLKEM768, размер сертификата).
-- Форум ntc.party — это Discourse, у него есть JSON API: `https://ntc.party/t/<id>.json`, `https://ntc.party/search.json?q=...`. Номера ключевых тем перечислены в исследовании, раздел 10.
+- Форум ntc.party — это Discourse с открытым JSON API (без ключа). Номера ключевых тем перечислены в исследовании, раздел 10. Из РФ форум без VPN не открывается.
+  - Поиск: `curl -s "https://ntc.party/search.json?q=<запрос>"` возвращает `topics[]` (id, title) и `posts[]` (`topic_id`, `post_number`, `blurb`). Фильтры пишутся прямо в `q`: `after:2026-06-01`, `before:`, `order:latest`, `in:title`, `#<slug-категории>`. Пример: `q=reality%20мегафон%20after:2026-06-01%20order:latest`.
+  - Тема целиком в markdown: `/raw/<topic_id>` (у длинных тем пагинация `?page=2`), отдельный пост: `/raw/<topic_id>/<post_number>`.
+  - Тема в JSON: `/t/<topic_id>.json`, где `post_stream.stream` — id всех постов. Остальные посты догружаются через `/t/<topic_id>/posts.json?post_ids[]=<id>&post_ids[]=<id>`.
+  - Свежие темы: `/latest.json`.
+  - Анонимные запросы ограничены по частоте. Делай паузу ~1 с между запросами, при 429 жди и повторяй.
+  - Сначала читай свежие страницы длинных тем: актуальная информация в конце.
